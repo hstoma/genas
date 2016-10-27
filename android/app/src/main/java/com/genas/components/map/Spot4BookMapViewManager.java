@@ -25,6 +25,7 @@ import javax.annotation.Nullable;
 public class Spot4BookMapViewManager extends ViewGroupManager<Spot4BookGoogleMapView> {
 
     private static final String NAME = "Spot4BooksMap";
+    public static final String REGISTRATION_NAME = "registrationName";
 
     private ReactContext reactNativeContext;
 
@@ -32,9 +33,30 @@ public class Spot4BookMapViewManager extends ViewGroupManager<Spot4BookGoogleMap
 
     private Spot4BookGoogleMapView mapView;
 
+    public enum Events {
+        EVENT_MAP_READY("onMapReady"),
+        EVENT_MARKER_TOUCHED("onMarkerTouched");
+
+
+        private final String mName;
+
+        Events(final String name) {
+            mName = name;
+        }
+
+        @Override
+        public String toString() {
+            return mName;
+        }
+    }
+
+
     public Spot4BookMapViewManager(ReactApplicationContext applicationReactNativeappContext) {
         this.applicationReactNativeAppContext = applicationReactNativeappContext;
     }
+
+
+
 
     @Override
     public String getName() {
@@ -57,10 +79,14 @@ public class Spot4BookMapViewManager extends ViewGroupManager<Spot4BookGoogleMap
 
     @Override
     @Nullable
-    public Map getExportedCustomDirectEventTypeConstants() {
-        Map<String, Map<String, String>> map = MapBuilder.of("onMapReady", MapBuilder.of("registrationName", "onMapReady"));
-        return map;
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        MapBuilder.Builder<String, Object> builder = MapBuilder.builder();
+        for (Events event : Events.values()) {
+            builder.put(event.toString(), MapBuilder.of(REGISTRATION_NAME, event.toString()));
+        }
+        return builder.build();
     }
+
 
     @ReactProp(name = "centerAndZoom")
     public void setCenterAndZoom(Spot4BookGoogleMapView view, ReadableMap centerAndZoom) {
@@ -72,7 +98,6 @@ public class Spot4BookMapViewManager extends ViewGroupManager<Spot4BookGoogleMap
 
     @Override
     public void addView(Spot4BookGoogleMapView mapView, View child, int index) {
-        System.out.println("-----------Add view" + index);
         mapView.addMapFeature(child, index);
     }
 

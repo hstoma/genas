@@ -4,22 +4,24 @@ import { PropTypes } from 'react';
 import { NativeModules, requireNativeComponent, View } from 'react-native';
 
 var iface = {
-  name: 'Spot4BooksMarker',
+  name: 'Spot4BooksCircle',
   propTypes: {
-    positionAndImageName:PropTypes.shape({
+    positionAndRadius:PropTypes.shape({
     /**
      * Coordinates for marker.
      */
     latitude: PropTypes.number.isRequired,
     longitude: PropTypes.number.isRequired,
     /**
-     * image name.
+     * radius.
      */
-    imageName: PropTypes.string.isRequired
+    radius: PropTypes.number.isRequired
   }),
+    strokeColor: PropTypes.string.isRequired,
+    fillColor: PropTypes.string.isRequired,
     ...View.propTypes
   },
 };
-var spot4BooksMapMarker = requireNativeComponent('Spot4BooksMarker', iface);
+var spot4BooksCircle = requireNativeComponent('Spot4BooksCircle', iface);
 
-export default spot4BooksMapMarker;
+export default spot4BooksCircle;

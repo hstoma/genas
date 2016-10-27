@@ -29,6 +29,7 @@ public class Spot4BooksGoogleMapPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         Spot4BookMapViewManager mapManager = new Spot4BookMapViewManager(reactContext);
         Spot4BookMarkerManager markerManager = new Spot4BookMarkerManager(reactContext);
-        return Arrays.<ViewManager>asList(mapManager, markerManager);
+        Spot4BookCircleManager circleManager = new Spot4BookCircleManager(reactContext);
+        return Arrays.<ViewManager>asList(mapManager, markerManager, circleManager);
     }
 }

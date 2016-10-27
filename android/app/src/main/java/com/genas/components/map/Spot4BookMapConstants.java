@@ -7,6 +7,7 @@ package com.genas.components.map;
 public class Spot4BookMapConstants {
     public static final String LATITUDE = "latitude";
     public static final String LONGTITUDE = "longitude";
+    public static final String RADIUS = "radius";
     public static final String ZOOM = "zoom";
     public static final String MARKER_IMAGE = "imageName";
 }

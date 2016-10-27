@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -79,9 +80,7 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
         map.setMapStyle(new MapStyleOptions(mapStyle));
         this.setCenterAndZoom(this.centerAndZoom);
         System.out.println("------------------------executed----------------");
-        manager.pushEvent(this, "onMapReady", null);
-        manager.pushEvent(this, "mapReady", null);
-
+        manager.pushEvent(this, Spot4BookMapViewManager.Events.EVENT_MAP_READY.toString(), null);
         if (this.features!=null) {
             for (Spot4BookMapFeature feature: features) {
                 processFeature(feature);
@@ -134,9 +133,25 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
             if (mrk!=null) {
                 marker.setRealObject(mrk);
             }
+        } else if (item instanceof Spot4BookCircle) {
+            Spot4BookCircle circle = (Spot4BookCircle)item;
+            Circle crk = addCircle(circle);
+            if (crk!=null) {
+                circle.setRealObject(crk);
+            }
+
         }
     }
 
+    public Circle addCircle(Spot4BookCircle circle) {
+        Circle crk = null;
+        if (circle != null) {
+            if (map != null) {
+                crk = map.addCircle(circle.getOptions());
+            }
+        }
+        return crk;
+    }
 
     public Marker addMarker(MarkerOptions options) {
         Marker mrk = null;
@@ -162,12 +177,16 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
             if (feature.getRealObject()!=null) {
                 ((Marker) feature.getRealObject()).remove();
             }
+        } else if (feature instanceof Spot4BookCircle) {
+            if (feature.getRealObject()!=null) {
+                ((Circle) feature.getRealObject()).remove();
+            }
         }
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        manager.pushEvent(this, "onMarkerClick", null);
+        manager.pushEvent(this, Spot4BookMapViewManager.Events.EVENT_MARKER_TOUCHED.toString(), null);
         System.out.println("--------------marker click");
         return true;
     }
