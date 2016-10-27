@@ -1,15 +1,28 @@
 package com.genas.components.map;
 
 import android.content.Context;
+import android.view.View;
 
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
+import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.genas.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.genas.components.map.Spot4BookMapConstants.LATITUDE;
 import static com.genas.components.map.Spot4BookMapConstants.LONGTITUDE;
@@ -19,7 +32,7 @@ import static com.genas.components.map.Spot4BookMapConstants.ZOOM;
  * Created by henadzistoma on 10/24/16.
  */
 
-public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallback {
+public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private String mapStyle = new StringBuilder().append("[{\"featureType\":\"all\",\"elementType\": \"geometry\",\"stylers\":[{\"color\": \"#242f3e\"}]},")
             .append("{\"featureType\": \"all\",\"elementType\": \"labels.text.stroke\",\"stylers\":[{\"lightness\": -80}]},")
@@ -45,13 +58,16 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
 
     public GoogleMap map;
     private ReadableMap centerAndZoom;
+    private final List<Spot4BookMapFeature> features = new ArrayList<>();
+    private Spot4BookMapViewManager manager;
 
-    public Spot4BookGoogleMapView(Context context) {
+    public Spot4BookGoogleMapView(Context context, Spot4BookMapViewManager manager) {
 
         super(context);
         super.onCreate(null);
         super.onResume();
         super.getMapAsync(this);
+        this.manager = manager;
 
 
     }
@@ -62,6 +78,18 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.setMapStyle(new MapStyleOptions(mapStyle));
         this.setCenterAndZoom(this.centerAndZoom);
+        System.out.println("------------------------executed----------------");
+        manager.pushEvent(this, "onMapReady", null);
+        manager.pushEvent(this, "mapReady", null);
+
+        if (this.features!=null) {
+            for (Spot4BookMapFeature feature: features) {
+                processFeature(feature);
+            }
+        }
+        map.setOnMarkerClickListener(this);
+
+
     }
 
 
@@ -89,6 +117,58 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
         }
     }
 
+    public void addMapFeature(View item, int index) {
+        System.out.println("=========!!!!!!!!!!!-----1");
+        if (item instanceof  Spot4BookMapFeature) {
+            features.add(index, (Spot4BookMapFeature) item);
+            processFeature((Spot4BookMapFeature) item);
+        }
 
 
+    }
+
+    public void processFeature(Spot4BookMapFeature item) {
+        if (item instanceof  Spot4BookMarker) {
+            Spot4BookMarker marker = (Spot4BookMarker)item;
+            Marker mrk = this.addMarker(marker.getOptions());
+            if (mrk!=null) {
+                marker.setRealObject(mrk);
+            }
+        }
+    }
+
+
+    public Marker addMarker(MarkerOptions options) {
+        Marker mrk = null;
+        if (options != null) {
+                if (map != null) {
+                    mrk = map.addMarker(options);
+                }
+        }
+        return mrk;
+    }
+
+    public int getFeatureCount() {
+        return features.size();
+    }
+
+    public View getFeatureAt(int index) {
+        return features.get(index);
+    }
+
+    public void removeFeatureAt(int index) {
+        Spot4BookMapFeature feature = features.remove(index);
+        if (feature instanceof Spot4BookMarker) {
+            if (feature.getRealObject()!=null) {
+                ((Marker) feature.getRealObject()).remove();
+            }
+        }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        manager.pushEvent(this, "onMarkerClick", null);
+        System.out.println("--------------marker click");
+        return true;
+    }
 }
