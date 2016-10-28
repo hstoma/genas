@@ -212,7 +212,6 @@ static NSString *const kMapStyle =@"["
     NSError *error;
     GMSMapStyle *style = [GMSMapStyle styleWithJSONString:kMapStyle error:&error];
     self.mapStyle = style;
-    
   }
   return self;
 }
@@ -240,20 +239,17 @@ static NSString *const kMapStyle =@"["
     marker.position = markerObject.coordinate;
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.icon = [UIImage imageNamed:markerObject.imageName];
+    marker.title = @"LABEL";
+    
     marker.map = self;
     markerObject.realMarker = marker;
   } else if ([subview isKindOfClass:[Spot4BooksCircle class]]) {
     Spot4BooksCircle *circleObject = (Spot4BooksCircle*)subview;
-
     GMSCircle *circle = [GMSCircle circleWithPosition:circleObject.coordinate radius:circleObject.radius];
-    
     circle.fillColor = circleObject.fillColor;
     circle.strokeColor = circleObject.strokeColor;
     circle.strokeWidth = 1;
     circle.map = self;
-    NSLog(@"-------------------%@", circleObject.identifier);
-
-
   }
   [_reactSubviews insertObject:(UIView *)subview atIndex:(NSUInteger) atIndex];
 }

@@ -33,7 +33,7 @@ export default class genas extends Component {
         <SimpleLabelView style={styles.simplelabel} labelText = "Hello GenaS Again from native"></SimpleLabelView>
         <Spot4BooksMap style={styles.mapStyle} centerAndZoom={point} 
           onMapReady={(e) => console.log('------OK----READY')}  
-          onMarkerTouched={(e) => console.log('----' + e.nativeEvent.markerId)}>
+          onMarkerTouched={(e) => this._markerSelected(e)}>
           {this._renderMarkers()} 
           {this._renderCircles()}
         </Spot4BooksMap>
@@ -41,6 +41,11 @@ export default class genas extends Component {
     );
   }
  
+  _markerSelected(e) {
+    console.log('----' + e.nativeEvent.markerId);
+    alert(e.nativeEvent.markerId);
+  }
+  
   _renderMarkers() {
     let result = [];
 	result.push( <Spot4BooksMarker identifier='5' key={'1'} positionAndImageName={markerPoint}/> );

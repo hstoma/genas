@@ -10,6 +10,7 @@
 #import "RCTViewManager.h"
 #import "Spot4BooksMap.h"
 
-@interface Spot4BooksMapManager : RCTViewManager
+@interface Spot4BooksMapManager : RCTViewManager<GMSMapViewDelegate>
+
 
 @end
