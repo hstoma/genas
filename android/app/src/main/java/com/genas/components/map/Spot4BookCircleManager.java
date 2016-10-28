@@ -46,4 +46,9 @@ public class Spot4BookCircleManager extends ViewGroupManager<Spot4BookCircle> {
     public void setFillColor (Spot4BookCircle view, int color) {
         view.setFillColor(color);
     }
+
+    @ReactProp(name = "identifier")
+    public void setIdentifier (Spot4BookCircle view, String identifier) {
+        view.setIdentifier(identifier);
+    }
 }

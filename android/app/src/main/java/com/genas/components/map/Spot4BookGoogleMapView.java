@@ -184,10 +184,26 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
         }
     }
 
+    public String getFeatureIndentifier(Object featureRealObject) {
+        String indentifier = null;
+        if (features!=null) {
+            for (Spot4BookMapFeature feature: features) {
+                if (featureRealObject.equals(feature.getRealObject())) {
+                    indentifier = feature.getIdentifier();
+                }
+            }
+        }
+        return indentifier;
+    }
+
     @Override
     public boolean onMarkerClick(Marker marker) {
-        manager.pushEvent(this, Spot4BookMapViewManager.Events.EVENT_MARKER_TOUCHED.toString(), null);
-        System.out.println("--------------marker click");
+        String indentifier = getFeatureIndentifier(marker);
+        WritableMap map = new WritableNativeMap();
+        if (indentifier!=null) {
+            map.putString("markerId",indentifier);
+        }
+        manager.pushEvent(this, Spot4BookMapViewManager.Events.EVENT_MARKER_TOUCHED.toString(), map);
         return true;
     }
 }

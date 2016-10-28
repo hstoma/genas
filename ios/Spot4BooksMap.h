@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "RCTComponent.h"
+#import "Spot4BooksMarker.h"
+
 
 @interface Spot4BooksMap : GMSMapView
 

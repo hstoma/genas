@@ -19,7 +19,7 @@ import Spot4BookMap from './spot4bookmap';
 
 
 var point = {latitude : 65.9667,longitude : -18.5333,zoom : 15};
-var markerPoint = {latitude : 65.9667,longitude : -18.5333, imageName : "icon"};
+var markerPoint = {latitude : 65.9667,longitude : -18.5333, imageName : 'marker'};
 var circlePoint = {latitude : 65.9667,longitude : -18.5333, radius: 115.0};
 
 export default class genas extends Component {
@@ -33,7 +33,7 @@ export default class genas extends Component {
         <SimpleLabelView style={styles.simplelabel} labelText = "Hello GenaS Again from native"></SimpleLabelView>
         <Spot4BookMap style={styles.mapStyle} centerAndZoom={point} 
           onMapReady={(e) => console.log('------OK----READY')}  
-          onMarkerTouched={(e) => console.log('------OK--CLICK')}>
+          onMarkerTouched={(e) => console.log('----' + e.nativeEvent.markerId)}>
           {this._renderMarkers()} 
           {this._renderCircles()}
         </Spot4BookMap>
@@ -43,13 +43,13 @@ export default class genas extends Component {
  
   _renderMarkers() {
     let result = [];
-	result.push( <Spot4BookMarker key={'1'} positionAndImageName={markerPoint}/> );
+	result.push( <Spot4BookMarker identifier='5' key={'1'} positionAndImageName={markerPoint}/> );
 	return result;
   }
   _renderCircles() {
-    let result = [];
-	result.push( <Spot4BookCircle key={'2'} positionAndRadius={circlePoint} fillColor = 'rgba(0,228,255,0.25)'	strokeColor = 'rgb(255,255,255)'/> );
-	return result;
+    /*let result = [];
+	result.push( <Spot4BookCircle identifier='2' key={'2'} positionAndRadius={circlePoint} fillColor = 'rgba(0,228,255,0.25)'	strokeColor = 'rgb(255,255,255)'/> );
+	return result;*/
   }
 }
 

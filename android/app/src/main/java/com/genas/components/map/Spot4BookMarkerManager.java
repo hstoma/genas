@@ -29,8 +29,15 @@ public class Spot4BookMarkerManager extends ViewGroupManager<Spot4BookMarker> {
     protected Spot4BookMarker createViewInstance(ThemedReactContext reactContext) {
         return new Spot4BookMarker(reactContext);
     }
+
     @ReactProp(name = "positionAndImageName")
     public void setPositionAndImageName (Spot4BookMarker view, ReadableMap positionAndImageName) {
         view.setPositionAndImageName(positionAndImageName);
     }
+
+    @ReactProp(name = "identifier")
+    public void setIdentifier (Spot4BookMarker view, String identifier) {
+        view.setIdentifier(identifier);
+    }
+
 }

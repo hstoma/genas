@@ -17,6 +17,7 @@ var iface = {
      */
     imageName: PropTypes.string.isRequired
   }),
+    identifier: PropTypes.string.isRequired, 
     ...View.propTypes
   },
 };

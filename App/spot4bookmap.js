@@ -8,13 +8,8 @@ const Spot4BooksMapObject = requireNativeComponent('Spot4BooksMap', Spot4BooksMa
 class Spot4BooksMap extends React.Component{
   constructor () {
       super();
-      /*if (Platform.OS === 'ios') {
-        this.onMapReady();
-      }*/
   }
-  
 }  
-
 
 Spot4BooksMap.propTypes = {
     centerAndZoom:PropTypes.shape({

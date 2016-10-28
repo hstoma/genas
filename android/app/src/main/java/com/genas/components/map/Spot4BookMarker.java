@@ -21,6 +21,7 @@ public class Spot4BookMarker extends Spot4BookMapFeature {
     private final Context context;
     private MarkerOptions options;
 
+
     public Spot4BookMarker(Context context) {
         super(context);
         this.context = context;
@@ -42,4 +43,7 @@ public class Spot4BookMarker extends Spot4BookMapFeature {
     public MarkerOptions getOptions() {
         return this.options;
     }
+
+
+
 }

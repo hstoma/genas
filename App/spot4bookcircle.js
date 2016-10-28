@@ -19,6 +19,7 @@ var iface = {
   }),
     strokeColor: PropTypes.string.isRequired,
     fillColor: PropTypes.string.isRequired,
+    identifier: PropTypes.string.isRequired,
     ...View.propTypes
   },
 };

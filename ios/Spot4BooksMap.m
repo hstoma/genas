@@ -8,7 +8,11 @@
 
 #import "Spot4BooksMap.h"
 
+
 @implementation Spot4BooksMap
+{
+  NSMutableArray<UIView *> *_reactSubviews;
+}
 
 static NSString *const kMapStyle =@"["
 @"  {"
@@ -219,14 +223,50 @@ static NSString *const kMapStyle =@"["
     CLLocationDegrees lat = [[centerAndZoom objectForKey:@"latitude"] doubleValue];
     CLLocationDegrees lon = [[centerAndZoom objectForKey:@"longitude"] doubleValue];
     float zoom = [[centerAndZoom objectForKey:@"zoom"] floatValue];
-    NSLog(@"----------------%.20f",lat);
-    NSLog(@"----------------%.20f",lon);
-    NSLog(@"----------------%.20f",zoom);
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat
                                                             longitude:lon
                                                                  zoom:zoom];
     [self setCamera:camera];
   }
 }
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-super-calls"
+- (void)insertReactSubview:(id<RCTComponent>)subview atIndex:(NSInteger)atIndex {
+  if ([subview isKindOfClass:[Spot4BooksMarker class]]) {
+    Spot4BooksMarker *markerObject = (Spot4BooksMarker*)subview;
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = markerObject.coordinate;
+    marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.icon = [UIImage imageNamed:markerObject.imageName];
+    marker.map = self;
+    markerObject.realMarker = marker;
+    NSLog(@"-------------------%@", markerObject.identifier);
+  }
+  [_reactSubviews insertObject:(UIView *)subview atIndex:(NSUInteger) atIndex];
+}
+#pragma clang diagnostic pop
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-super-calls"
+- (void)removeReactSubview:(id<RCTComponent>)subview {
+  if ([subview isKindOfClass:[Spot4BooksMarker class]]) {
+    Spot4BooksMarker *marker = (Spot4BooksMarker*)subview;
+    marker.realMarker.map = nil;
+  }
+  [_reactSubviews removeObject:(UIView *)subview];
+}
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-super-calls"
+- (NSArray<id<RCTComponent>> *)reactSubviews {
+  return _reactSubviews;
+}
+#pragma clang diagnostic pop
+
+
 
 @end
