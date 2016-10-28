@@ -20,5 +20,5 @@
 
 
 - (void)setPositionAndImageName:(NSDictionary *) positionAndImageName;
-- (void)setIdentifier:(NSString *) identifierValue;
+
 @end

@@ -242,7 +242,18 @@ static NSString *const kMapStyle =@"["
     marker.icon = [UIImage imageNamed:markerObject.imageName];
     marker.map = self;
     markerObject.realMarker = marker;
-    NSLog(@"-------------------%@", markerObject.identifier);
+  } else if ([subview isKindOfClass:[Spot4BooksCircle class]]) {
+    Spot4BooksCircle *circleObject = (Spot4BooksCircle*)subview;
+
+    GMSCircle *circle = [GMSCircle circleWithPosition:circleObject.coordinate radius:circleObject.radius];
+    
+    circle.fillColor = circleObject.fillColor;
+    circle.strokeColor = circleObject.strokeColor;
+    circle.strokeWidth = 1;
+    circle.map = self;
+    NSLog(@"-------------------%@", circleObject.identifier);
+
+
   }
   [_reactSubviews insertObject:(UIView *)subview atIndex:(NSUInteger) atIndex];
 }
@@ -255,6 +266,9 @@ static NSString *const kMapStyle =@"["
   if ([subview isKindOfClass:[Spot4BooksMarker class]]) {
     Spot4BooksMarker *marker = (Spot4BooksMarker*)subview;
     marker.realMarker.map = nil;
+  } else if ([subview isKindOfClass:[Spot4BooksCircle class]]) {
+    Spot4BooksCircle *circle = (Spot4BooksCircle*)subview;
+    circle.realCircle.map = nil;
   }
   [_reactSubviews removeObject:(UIView *)subview];
 }

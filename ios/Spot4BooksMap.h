@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "RCTComponent.h"
 #import "Spot4BooksMarker.h"
+#import "Spot4BooksCircle.h"
 
 
 @interface Spot4BooksMap : GMSMapView

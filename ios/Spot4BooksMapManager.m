@@ -23,6 +23,6 @@ RCT_EXPORT_MODULE();
   return map;
 }
 
-RCT_EXPORT_VIEW_PROPERTY(centerAndZoom, NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(centerAndZoom, NSDictionary)
 
 @end

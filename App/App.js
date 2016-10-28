@@ -13,9 +13,9 @@ import {
   Dimensions
 } from 'react-native';
 import SimpleLabelView from './simplelabelview';
-import Spot4BookMarker from './spot4bookmarker'
-import Spot4BookCircle from './spot4bookcircle'
-import Spot4BookMap from './spot4bookmap';
+import Spot4BooksMarker from './spot4bookmarker'
+import Spot4BooksCircle from './spot4bookcircle'
+import Spot4BooksMap from './spot4bookmap';
 
 
 var point = {latitude : 65.9667,longitude : -18.5333,zoom : 15};
@@ -31,25 +31,25 @@ export default class genas extends Component {
           Welcome GenaS!
         </Text>
         <SimpleLabelView style={styles.simplelabel} labelText = "Hello GenaS Again from native"></SimpleLabelView>
-        <Spot4BookMap style={styles.mapStyle} centerAndZoom={point} 
+        <Spot4BooksMap style={styles.mapStyle} centerAndZoom={point} 
           onMapReady={(e) => console.log('------OK----READY')}  
           onMarkerTouched={(e) => console.log('----' + e.nativeEvent.markerId)}>
           {this._renderMarkers()} 
           {this._renderCircles()}
-        </Spot4BookMap>
+        </Spot4BooksMap>
       </View>
     );
   }
  
   _renderMarkers() {
     let result = [];
-	result.push( <Spot4BookMarker identifier='5' key={'1'} positionAndImageName={markerPoint}/> );
+	result.push( <Spot4BooksMarker identifier='5' key={'1'} positionAndImageName={markerPoint}/> );
 	return result;
   }
   _renderCircles() {
-    /*let result = [];
-	result.push( <Spot4BookCircle identifier='2' key={'2'} positionAndRadius={circlePoint} fillColor = 'rgba(0,228,255,0.25)'	strokeColor = 'rgb(255,255,255)'/> );
-	return result;*/
+    let result = [];
+	result.push( <Spot4BooksCircle identifier='2' key={'2'} positionAndRadius={circlePoint} fillColor = 'rgba(0,228,255,0.25)'	strokeColor = 'rgb(255,255,255)'/> );
+	return result;
   }
 }
 

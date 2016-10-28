@@ -18,8 +18,8 @@ RCT_EXPORT_MODULE()
   return marker;
 }
 
-RCT_EXPORT_VIEW_PROPERTY(identifier, NSString);
-RCT_EXPORT_VIEW_PROPERTY(positionAndImageName, NSDictionary);
+RCT_EXPORT_VIEW_PROPERTY(identifier, NSString)
+RCT_EXPORT_VIEW_PROPERTY(positionAndImageName, NSDictionary)
 
 
 @end

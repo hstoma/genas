@@ -30,6 +30,8 @@
 		C183D6591DBF9475004CC5F9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C183D6581DBF9475004CC5F9 /* Podfile */; };
 		C183D6901DC22B20004CC5F9 /* Spot4BooksMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D68F1DC22B20004CC5F9 /* Spot4BooksMarkerManager.m */; };
 		C183D6961DC22C98004CC5F9 /* Spot4BooksMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D6951DC22C98004CC5F9 /* Spot4BooksMarker.m */; };
+		C183D6A91DC33C11004CC5F9 /* Spot4BooksCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D6A81DC33C11004CC5F9 /* Spot4BooksCircle.m */; };
+		C183D6AC1DC33E60004CC5F9 /* Spot4BooksCircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D6AB1DC33E60004CC5F9 /* Spot4BooksCircleManager.m */; };
 		FD28D2A8A3834020E01E76B8 /* Pods_genas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F40F1D0947C98250A29519E /* Pods_genas.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +152,10 @@
 		C183D68F1DC22B20004CC5F9 /* Spot4BooksMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksMarkerManager.m; sourceTree = "<group>"; };
 		C183D6941DC22C98004CC5F9 /* Spot4BooksMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksMarker.h; sourceTree = "<group>"; };
 		C183D6951DC22C98004CC5F9 /* Spot4BooksMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksMarker.m; sourceTree = "<group>"; };
+		C183D6A71DC33C11004CC5F9 /* Spot4BooksCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksCircle.h; sourceTree = "<group>"; };
+		C183D6A81DC33C11004CC5F9 /* Spot4BooksCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksCircle.m; sourceTree = "<group>"; };
+		C183D6AA1DC33E60004CC5F9 /* Spot4BooksCircleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksCircleManager.h; sourceTree = "<group>"; };
+		C183D6AB1DC33E60004CC5F9 /* Spot4BooksCircleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksCircleManager.m; sourceTree = "<group>"; };
 		D43E6F82D4E62B9E3DC64863 /* Pods-genas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-genas.release.xcconfig"; path = "Pods/Target Support Files/Pods-genas/Pods-genas.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -360,6 +366,10 @@
 				C183D68F1DC22B20004CC5F9 /* Spot4BooksMarkerManager.m */,
 				C183D6941DC22C98004CC5F9 /* Spot4BooksMarker.h */,
 				C183D6951DC22C98004CC5F9 /* Spot4BooksMarker.m */,
+				C183D6A71DC33C11004CC5F9 /* Spot4BooksCircle.h */,
+				C183D6A81DC33C11004CC5F9 /* Spot4BooksCircle.m */,
+				C183D6AA1DC33E60004CC5F9 /* Spot4BooksCircleManager.h */,
+				C183D6AB1DC33E60004CC5F9 /* Spot4BooksCircleManager.m */,
 			);
 			name = SimpleComponents;
 			sourceTree = "<group>";
@@ -658,6 +668,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C183D6A91DC33C11004CC5F9 /* Spot4BooksCircle.m in Sources */,
+				C183D6AC1DC33E60004CC5F9 /* Spot4BooksCircleManager.m in Sources */,
 				C183D6471DBF9089004CC5F9 /* Spot4BooksMap.m in Sources */,
 				C183D6901DC22B20004CC5F9 /* Spot4BooksMarkerManager.m in Sources */,
 				C183D6141DBF5462004CC5F9 /* SimpleLabelViewManager.m in Sources */,
