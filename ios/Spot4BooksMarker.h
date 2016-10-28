@@ -16,7 +16,7 @@
 @property (nonatomic, assign) NSString *identifier;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, assign) NSString* imageName;
-@property (nonatomic, strong) GMSMarker* realMarker;
+@property (nonatomic, assign) GMSMarker* realMarker;
 
 
 - (void)setPositionAndImageName:(NSDictionary *) positionAndImageName;

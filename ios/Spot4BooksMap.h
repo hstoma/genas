@@ -16,5 +16,5 @@
 @interface Spot4BooksMap : GMSMapView
 
 - (void) setCenterAndZoom:(NSDictionary *) centerAndZoom;
-
+- (NSString*) getMarkerId:(GMSMarker *) marker;
 @end

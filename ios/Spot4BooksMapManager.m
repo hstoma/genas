@@ -17,12 +17,14 @@ RCT_EXPORT_MODULE();
   Spot4BooksMap *map = [Spot4BooksMap new];
   map.myLocationEnabled = NO;
   map.delegate = self;
+  self.mapObject = map;
   return map;
 }
 
 #pragma mark - GMSMapViewDelegate
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(nonnull GMSMarker *)marker {
-  [self.bridge.eventDispatcher sendInputEventWithName:@"onMarkerTouched" body:@{@"target":mapView.reactTag, @"markerId": @"5"}];
+  NSString* markerID = [self.mapObject getMarkerId:marker];
+  [self.bridge.eventDispatcher sendInputEventWithName:@"onMarkerTouched" body:@{@"target":mapView.reactTag, @"markerId": markerID}];
   return TRUE;
 }
 

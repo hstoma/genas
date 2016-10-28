@@ -15,7 +15,7 @@
 @property (nonatomic, assign) NSString *identifier;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, assign) CLLocationDistance radius;
-@property (nonatomic, strong) GMSCircle* realCircle;
+@property (nonatomic, assign) GMSCircle* realCircle;
 @property (nonatomic, strong) UIColor *fillColor;
 @property (nonatomic, strong) UIColor *strokeColor;
 

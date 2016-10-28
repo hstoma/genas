@@ -11,7 +11,7 @@
 
 @implementation Spot4BooksMap
 {
-  NSMutableArray<UIView *> *_reactSubviews;
+  NSMutableArray<id<RCTComponent>> *_reactSubviews;
 }
 
 static NSString *const kMapStyle =@"["
@@ -210,6 +210,7 @@ static NSString *const kMapStyle =@"["
 {
   if ((self = [super init])) {
     NSError *error;
+    _reactSubviews = [NSMutableArray new];
     GMSMapStyle *style = [GMSMapStyle styleWithJSONString:kMapStyle error:&error];
     self.mapStyle = style;
   }
@@ -240,7 +241,6 @@ static NSString *const kMapStyle =@"["
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.icon = [UIImage imageNamed:markerObject.imageName];
     marker.title = @"LABEL";
-    
     marker.map = self;
     markerObject.realMarker = marker;
   } else if ([subview isKindOfClass:[Spot4BooksCircle class]]) {
@@ -250,8 +250,9 @@ static NSString *const kMapStyle =@"["
     circle.strokeColor = circleObject.strokeColor;
     circle.strokeWidth = 1;
     circle.map = self;
+    circleObject.realCircle = circle;
   }
-  [_reactSubviews insertObject:(UIView *)subview atIndex:(NSUInteger) atIndex];
+  [_reactSubviews insertObject:subview atIndex:(NSUInteger) atIndex];
 }
 #pragma clang diagnostic pop
 
@@ -266,7 +267,7 @@ static NSString *const kMapStyle =@"["
     Spot4BooksCircle *circle = (Spot4BooksCircle*)subview;
     circle.realCircle.map = nil;
   }
-  [_reactSubviews removeObject:(UIView *)subview];
+  [_reactSubviews removeObject:subview];
 }
 #pragma clang diagnostic pop
 
@@ -277,6 +278,20 @@ static NSString *const kMapStyle =@"["
 }
 #pragma clang diagnostic pop
 
+
+- (NSString*) getMarkerId:(GMSMarker *) marker {
+  NSString* retValue  = @"";
+  if (_reactSubviews!=NULL) {
+    for (id<RCTComponent> subview in _reactSubviews) {
+      if ([subview isKindOfClass:[Spot4BooksMarker class]]) {
+        if ([((Spot4BooksMarker*)subview).realMarker isEqual:marker]) {
+          retValue = ((Spot4BooksMarker*)subview).identifier;
+          break;
+        }
+      }
+    }
+  }return retValue;
+}
 
 
 @end

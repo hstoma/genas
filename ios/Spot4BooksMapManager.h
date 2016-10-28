@@ -12,5 +12,6 @@
 
 @interface Spot4BooksMapManager : RCTViewManager<GMSMapViewDelegate>
 
+@property (nonatomic, assign) Spot4BooksMap * mapObject;
 
 @end
