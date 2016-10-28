@@ -240,7 +240,6 @@ static NSString *const kMapStyle =@"["
     marker.position = markerObject.coordinate;
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.icon = [UIImage imageNamed:markerObject.imageName];
-    marker.title = @"LABEL";
     marker.map = self;
     markerObject.realMarker = marker;
   } else if ([subview isKindOfClass:[Spot4BooksCircle class]]) {
