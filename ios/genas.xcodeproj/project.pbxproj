@@ -32,6 +32,10 @@
 		C183D6961DC22C98004CC5F9 /* Spot4BooksMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D6951DC22C98004CC5F9 /* Spot4BooksMarker.m */; };
 		C183D6A91DC33C11004CC5F9 /* Spot4BooksCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D6A81DC33C11004CC5F9 /* Spot4BooksCircle.m */; };
 		C183D6AC1DC33E60004CC5F9 /* Spot4BooksCircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C183D6AB1DC33E60004CC5F9 /* Spot4BooksCircleManager.m */; };
+		C1D9BEFF1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BEFE1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.m */; };
+		C1D9BF0C1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BF0B1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.m */; };
+		C1D9BF0F1DCB5303005AEE4F /* SimpleItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BF0E1DCB5303005AEE4F /* SimpleItemObject.m */; };
+		C1D9BF121DCB59D0005AEE4F /* Spot4BooksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BF111DCB59D0005AEE4F /* Spot4BooksCell.m */; };
 		FD28D2A8A3834020E01E76B8 /* Pods_genas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F40F1D0947C98250A29519E /* Pods_genas.framework */; };
 /* End PBXBuildFile section */
 
@@ -156,6 +160,14 @@
 		C183D6A81DC33C11004CC5F9 /* Spot4BooksCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksCircle.m; sourceTree = "<group>"; };
 		C183D6AA1DC33E60004CC5F9 /* Spot4BooksCircleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksCircleManager.h; sourceTree = "<group>"; };
 		C183D6AB1DC33E60004CC5F9 /* Spot4BooksCircleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksCircleManager.m; sourceTree = "<group>"; };
+		C1D9BEFD1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksHorizontalListViewManager.h; sourceTree = "<group>"; };
+		C1D9BEFE1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksHorizontalListViewManager.m; sourceTree = "<group>"; };
+		C1D9BF0A1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksHorizontalListView.h; sourceTree = "<group>"; };
+		C1D9BF0B1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksHorizontalListView.m; sourceTree = "<group>"; };
+		C1D9BF0D1DCB5303005AEE4F /* SimpleItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleItemObject.h; sourceTree = "<group>"; };
+		C1D9BF0E1DCB5303005AEE4F /* SimpleItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleItemObject.m; sourceTree = "<group>"; };
+		C1D9BF101DCB59D0005AEE4F /* Spot4BooksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot4BooksCell.h; sourceTree = "<group>"; };
+		C1D9BF111DCB59D0005AEE4F /* Spot4BooksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksCell.m; sourceTree = "<group>"; };
 		D43E6F82D4E62B9E3DC64863 /* Pods-genas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-genas.release.xcconfig"; path = "Pods/Target Support Files/Pods-genas/Pods-genas.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -370,6 +382,14 @@
 				C183D6A81DC33C11004CC5F9 /* Spot4BooksCircle.m */,
 				C183D6AA1DC33E60004CC5F9 /* Spot4BooksCircleManager.h */,
 				C183D6AB1DC33E60004CC5F9 /* Spot4BooksCircleManager.m */,
+				C1D9BEFD1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.h */,
+				C1D9BEFE1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.m */,
+				C1D9BF0A1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.h */,
+				C1D9BF0B1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.m */,
+				C1D9BF0D1DCB5303005AEE4F /* SimpleItemObject.h */,
+				C1D9BF0E1DCB5303005AEE4F /* SimpleItemObject.m */,
+				C1D9BF101DCB59D0005AEE4F /* Spot4BooksCell.h */,
+				C1D9BF111DCB59D0005AEE4F /* Spot4BooksCell.m */,
 			);
 			name = SimpleComponents;
 			sourceTree = "<group>";
@@ -670,11 +690,15 @@
 			files = (
 				C183D6A91DC33C11004CC5F9 /* Spot4BooksCircle.m in Sources */,
 				C183D6AC1DC33E60004CC5F9 /* Spot4BooksCircleManager.m in Sources */,
+				C1D9BF0C1DCB2D8B005AEE4F /* Spot4BooksHorizontalListView.m in Sources */,
 				C183D6471DBF9089004CC5F9 /* Spot4BooksMap.m in Sources */,
 				C183D6901DC22B20004CC5F9 /* Spot4BooksMarkerManager.m in Sources */,
 				C183D6141DBF5462004CC5F9 /* SimpleLabelViewManager.m in Sources */,
+				C1D9BEFF1DCB2CF2005AEE4F /* Spot4BooksHorizontalListViewManager.m in Sources */,
 				C183D6271DBF6C80004CC5F9 /* SimpleLabelView.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				C1D9BF121DCB59D0005AEE4F /* Spot4BooksCell.m in Sources */,
+				C1D9BF0F1DCB5303005AEE4F /* SimpleItemObject.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				C183D6441DBF9076004CC5F9 /* Spot4BooksMapManager.m in Sources */,
 				C183D6961DC22C98004CC5F9 /* Spot4BooksMarker.m in Sources */,

@@ -17,4 +17,5 @@
 
 - (void) setCenterAndZoom:(NSDictionary *) centerAndZoom;
 - (NSString*) getMarkerId:(GMSMarker *) marker;
+
 @end

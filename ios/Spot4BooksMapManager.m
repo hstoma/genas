@@ -28,7 +28,9 @@ RCT_EXPORT_MODULE();
   return TRUE;
 }
 
+RCT_EXPORT_VIEW_PROPERTY(customMapStyle, NSString)
 RCT_EXPORT_VIEW_PROPERTY(centerAndZoom, NSDictionary)
+
 
 - (NSArray *) customDirectEventTypes {
   return @[@"onMarkerTouched"];

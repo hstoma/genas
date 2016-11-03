@@ -209,14 +209,31 @@ static NSString *const kMapStyle =@"["
 - (instancetype)init
 {
   if ((self = [super init])) {
-    NSError *error;
     _reactSubviews = [NSMutableArray new];
-    GMSMapStyle *style = [GMSMapStyle styleWithJSONString:kMapStyle error:&error];
-    self.mapStyle = style;
+    //GMSMapStyle *style = [GMSMapStyle styleWithJSONString:kMapStyle error:&error];
+    
+    //NSError *error;
+    /*NSBundle *mainBundle = [NSBundle mainBundle];
+    NSURL *styleUrl = [mainBundle URLForResource:@"mapstyle" withExtension:@"json"];
+    GMSMapStyle *style = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
+    if (!style) {
+     NSLog(@"The style definition could not be loaded: %@", error);
+     }
+    //GMSMapStyle *style = [GMSMapStyle styleWithJSONString:kMapStyle error:&error];
+    //self.mapStyle = style;
+
+    
+    self.mapStyle = style;*/
   }
   return self;
 }
 
+- (void) setCustomMapStyle:(NSString *) styleString {
+   NSError *error;
+  NSLog(@"------------------------%@", styleString);
+   GMSMapStyle *style = [GMSMapStyle styleWithJSONString:styleString error:&error];
+   self.mapStyle = style;
+}
 
 - (void) setCenterAndZoom:(NSDictionary *) centerAndZoom {
   if (centerAndZoom!=NULL) {

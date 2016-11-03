@@ -2,13 +2,13 @@
 'use strict';
 import React, { PropTypes } from 'react';
 import { NativeModules, requireNativeComponent, View, NativeEventEmitter } from 'react-native';
-
+import assets from './assets';
 const Spot4BooksMapObject = requireNativeComponent('Spot4BooksMap', Spot4BooksMap);
-
+const mapStyleJsonString = JSON.stringify(assets.jsons.mapstyle);
 class Spot4BooksMap extends React.Component{
   constructor () {
       super();
-  }
+  } 
 }  
 
 Spot4BooksMap.propTypes = {
@@ -23,7 +23,7 @@ Spot4BooksMap.propTypes = {
        */
       zoom: PropTypes.number.isRequired
     }),
-    onMapReady: React.PropTypes.func,
+    customMapStyle: PropTypes.string.isRequired,
     ...View.propTypes,
 };
 var spot4BooksMap = requireNativeComponent('Spot4BooksMap', Spot4BooksMap);

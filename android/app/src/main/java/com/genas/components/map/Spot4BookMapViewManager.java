@@ -93,7 +93,10 @@ public class Spot4BookMapViewManager extends ViewGroupManager<Spot4BookGoogleMap
         view.setCenterAndZoom(centerAndZoom);
     }
 
-
+    @ReactProp(name = "customMapStyle")
+    public void setCustomMapStyle(Spot4BookGoogleMapView view, String mapStyle) {
+        view.setCustomMapStyle(mapStyle);
+    }
 
 
     @Override

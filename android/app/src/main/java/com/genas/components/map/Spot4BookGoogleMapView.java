@@ -35,7 +35,7 @@ import static com.genas.components.map.Spot4BookMapConstants.ZOOM;
 
 public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
-    private String mapStyle = new StringBuilder().append("[{\"featureType\":\"all\",\"elementType\": \"geometry\",\"stylers\":[{\"color\": \"#242f3e\"}]},")
+    private String mapStyle;/* = new StringBuilder().append("[{\"featureType\":\"all\",\"elementType\": \"geometry\",\"stylers\":[{\"color\": \"#242f3e\"}]},")
             .append("{\"featureType\": \"all\",\"elementType\": \"labels.text.stroke\",\"stylers\":[{\"lightness\": -80}]},")
             .append("{\"featureType\": \"administrative\",\"elementType\": \"labels.text.fill\",\"stylers\": [{\"color\": \"#746855\"}]},")
             .append("{\"featureType\": \"administrative.locality\",\"elementType\": \"labels.text.fill\",\"stylers\": [{\"color\": \"#d59563\"}]},")
@@ -55,7 +55,7 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
             .append("{\"featureType\": \"transit.station\",\"elementType\": \"labels.text.fill\",\"stylers\": [{\"color\": \"#d59563\"}]},")
             .append("{\"featureType\": \"water\",\"elementType\": \"geometry\",\"stylers\": [{\"color\": \"#17263c\"}]},")
             .append("{\"featureType\": \"water\",\"elementType\": \"labels.text.fill\",\"stylers\": [{\"color\": \"#515c6d\"}]},")
-            .append("{\"featureType\": \"water\",\"elementType\": \"labels.text.stroke\",\"stylers\": [{\"lightness\": -20}]}]").toString();
+            .append("{\"featureType\": \"water\",\"elementType\": \"labels.text.stroke\",\"stylers\": [{\"lightness\": -20}]}]").toString();*/
 
     public GoogleMap map;
     private ReadableMap centerAndZoom;
@@ -77,7 +77,9 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        map.setMapStyle(new MapStyleOptions(mapStyle));
+        if (mapStyle!=null) {
+            map.setMapStyle(new MapStyleOptions(mapStyle));
+        }
         this.setCenterAndZoom(this.centerAndZoom);
         System.out.println("------------------------executed----------------");
         manager.pushEvent(this, Spot4BookMapViewManager.Events.EVENT_MAP_READY.toString(), null);
@@ -95,6 +97,13 @@ public class Spot4BookGoogleMapView extends MapView implements OnMapReadyCallbac
     public void clearMap() {
         if (map!=null) {
             map.clear();
+        }
+    }
+
+    public void setCustomMapStyle(String mapStyle) {
+        this.mapStyle = mapStyle;
+        if (map!=null) {
+            map.setMapStyle(new MapStyleOptions(mapStyle));
         }
     }
 
