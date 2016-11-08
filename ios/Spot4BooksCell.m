@@ -11,6 +11,7 @@
 
 @implementation Spot4BooksCell {
   UIView* rootView;
+  UIImageView *coverImage;
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,11 +22,9 @@
     rootView = [[UIView alloc] initWithFrame:CGRectZero];
     [rootView setBackgroundColor:[UIColor grayColor]];
     [rootView setTag:99];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 140, 20)];
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    
-    [titleLabel setTag:100];
-    [rootView addSubview:titleLabel];
+    coverImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [coverImage setTag:100];
+    [rootView addSubview:coverImage];
     [self.contentView addSubview:rootView];
     
     
@@ -36,8 +35,10 @@
 }
 
 -(void) setRealBounds:(CGSize) size {
-  CGFloat y = (self.frame.size.height -size.height)/2;
+  CGFloat y = (self.frame.size.height -size.height)/2 - 20;
+  NSLog(@"------------%f       %f      %f", self.frame.size.height, size.height, y);
   [rootView setFrame:CGRectMake(0, y, size.width, size.height)];
+  [coverImage setFrame:CGRectMake(0, 0, size.width, size.height)];
 }
 
 @end

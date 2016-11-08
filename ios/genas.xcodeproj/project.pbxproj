@@ -171,6 +171,7 @@
 		C1D9BF111DCB59D0005AEE4F /* Spot4BooksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spot4BooksCell.m; sourceTree = "<group>"; };
 		C1D9BF191DCC5F58005AEE4F /* RCTConvert+BooksData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+BooksData.h"; sourceTree = "<group>"; };
 		C1D9BF1A1DCC5F58005AEE4F /* RCTConvert+BooksData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+BooksData.m"; sourceTree = "<group>"; };
+		C1D9BF261DD1DD65005AEE4F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D43E6F82D4E62B9E3DC64863 /* Pods-genas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-genas.release.xcconfig"; path = "Pods/Target Support Files/Pods-genas/Pods-genas.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -402,6 +403,7 @@
 		C8793E5E26DCCA2287F1FCC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1D9BF261DD1DD65005AEE4F /* QuartzCore.framework */,
 				1F40F1D0947C98250A29519E /* Pods_genas.framework */,
 			);
 			name = Frameworks;

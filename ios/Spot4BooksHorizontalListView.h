@@ -11,9 +11,20 @@
 #import "SimpleItemObject.h"
 #import "Spot4BooksCell.h"
 
+@protocol CollectionViewActionsDelegate <NSObject>
+@optional
+
+- (void)onTapItem:(NSString *)itemId;
+
+@end
+
+
 @interface Spot4BooksHorizontalListView : RCTView <UICollectionViewDataSource, UICollectionViewDelegate>
 
+
   @property (nonatomic, retain) BooksData *_itemsArray;
+  @property (nonatomic, weak) id <CollectionViewActionsDelegate> actionsDelegate;
+
 - (void) initCollection;
 
 @end

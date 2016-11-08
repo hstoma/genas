@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "RCTViewManager.h"
+#import "Spot4BooksHorizontalListView.h"
+#import "RCTConvert+BooksData.h"
 
-@interface Spot4BooksHorizontalListViewManager : RCTViewManager
+@interface Spot4BooksHorizontalListViewManager : RCTViewManager <CollectionViewActionsDelegate>
 
 @end

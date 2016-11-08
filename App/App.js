@@ -39,10 +39,6 @@ export default class genas extends Component {
     console.log('-----------OK');
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome GenaS!
-        </Text>
-        <SimpleLabelView style={styles.simplelabel} labelText = "Hello GenaS Again from native"></SimpleLabelView>
         <Spot4BooksHorizontalList style={styles.listStyle} bookList={books} onItemTouched={(e) => this._itemSelected(e)}/>
       </View>
     );
@@ -77,9 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   listStyle: {
-    height: Dimensions.get('window').height - 40 - Dimensions.get('window').height/2,
+    height: 250,
     width: Dimensions.get('window').width,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FF0000',
+    marginTop: 25
   },
   mapStyle: {
     height: Dimensions.get('window').height - 40,
