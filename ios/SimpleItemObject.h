@@ -10,10 +10,11 @@
 
 @interface SimpleItemObject : NSObject
 
-@property (nonatomic, assign) NSString *labelText;
-@property (nonatomic, assign) float width;
-@property (nonatomic, assign) float height;
+@property (nonatomic, retain) NSString *labelText;
+@property (nonatomic, retain) NSString *urlText;
 
-- (instancetype)initWithProperties:(NSString*) labelText withWidth:(float) width andHeight:(float) height;
+
+- (instancetype)initWithProperties:(NSString*) labelText withUrl:(NSString*) url;
 
 @end
+typedef NSMutableArray<SimpleItemObject *> BooksData;

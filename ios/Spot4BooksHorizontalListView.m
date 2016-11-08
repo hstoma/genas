@@ -9,45 +9,58 @@
 #import "Spot4BooksHorizontalListView.h"
 #import "UIView+React.h"
 
+
 @implementation Spot4BooksHorizontalListView {
   UICollectionView *_collectionView;
-  NSMutableArray *_itemsArray;
+  
 }
 
 
 - (instancetype)init
 {
   if ((self = [super init])) {
+        /*_itemsArray = [[BooksData alloc] init];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 1" withWidth:150. andHeight:180.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 2" withWidth:120. andHeight:120.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 3" withWidth:250. andHeight:190.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 4" withWidth:170. andHeight:130.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 5" withWidth:230. andHeight:100.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 6" withWidth:350. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 7" withWidth:150. andHeight:170.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 8" withWidth:100. andHeight:40.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 9" withWidth:180. andHeight:90.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 10" withWidth:190. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 11" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 12" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 13" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 14" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 15" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 16" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 17" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 18" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 19" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 20" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 21" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 22" withWidth:100. andHeight:140.]];
+    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 23" withWidth:100. andHeight:140.]];*/
+    
+    
+  }
+  return self;
+}
+
+- (void) initCollection {
+  if (_collectionView==nil) {
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(200, 200)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     _collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:flowLayout];
     [_collectionView registerClass:[Spot4BooksCell class] forCellWithReuseIdentifier:@"Spot4BooksCell"];
     [_collectionView setBackgroundColor:[UIColor clearColor]];
-    _itemsArray = [[NSMutableArray alloc] init];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 1" withWidth:150. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 2" withWidth:120. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 3" withWidth:250. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 4" withWidth:170. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 5" withWidth:230. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 6" withWidth:350. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 7" withWidth:150. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 8" withWidth:100. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 9" withWidth:180. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 10" withWidth:190. andHeight:240.]];
-    [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:@"Item 11" withWidth:100. andHeight:240.]];
-    
     [_collectionView setDelegate:self];
     [_collectionView setDataSource:self];
     [self addSubview:_collectionView];
   }
-  return self;
-}
-
-
-- (void) initItemsForCollection {
-  _itemsArray = [[NSMutableArray alloc] init];
-  
 }
 
 
@@ -61,14 +74,14 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  NSLog(@"----------------------1----%lu", (unsigned long)[_itemsArray count]);
-  return [_itemsArray count];
+  
+  return [self._itemsArray count];
 }
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-  SimpleItemObject* obj = [_itemsArray objectAtIndex:indexPath.item];
-  return CGSizeMake(obj.width, obj.height);
+  SimpleItemObject* obj = [self._itemsArray objectAtIndex:indexPath.item];
+  return CGSizeMake(170., self.frame.size.height);
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,8 +97,12 @@
   
   /* Uncomment this block to use subclass-based cells */
   Spot4BooksCell *cell = (Spot4BooksCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-  SimpleItemObject* obj = [_itemsArray objectAtIndex:indexPath.item];
-  //[cell setFrame:CGRectMake(0, 0, obj.width, 200)];
+  UIView* rootView = (UIView *)[cell viewWithTag:99];
+  UILabel* label = (UILabel *)[rootView viewWithTag:100];
+  SimpleItemObject* obj = [self._itemsArray objectAtIndex:indexPath.item];
+  NSLog(@"---------222222----%@",obj.labelText);
+  [label setText:obj.labelText];
+  [cell setRealBounds:CGSizeMake(170., 170.)];
   return cell;
 }
 

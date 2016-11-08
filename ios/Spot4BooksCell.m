@@ -9,22 +9,35 @@
 #import "Spot4BooksCell.h"
 
 
-@implementation Spot4BooksCell
+@implementation Spot4BooksCell {
+  UIView* rootView;
+}
 - (id)initWithFrame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
   if (self) {
     
     
-    UIView* rootView = [[UIView alloc] initWithFrame:CGRectZero];
-    [rootView setBackgroundColor:[UIColor blueColor]];
+    rootView = [[UIView alloc] initWithFrame:CGRectZero];
+    [rootView setBackgroundColor:[UIColor grayColor]];
+    [rootView setTag:99];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 140, 20)];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    
+    [titleLabel setTag:100];
+    [rootView addSubview:titleLabel];
     [self.contentView addSubview:rootView];
-    [self setBackgroundColor:[UIColor blueColor]];
+    
     
   }
   
   return self;
   
+}
+
+-(void) setRealBounds:(CGSize) size {
+  CGFloat y = (self.frame.size.height -size.height)/2;
+  [rootView setFrame:CGRectMake(0, y, size.width, size.height)];
 }
 
 @end

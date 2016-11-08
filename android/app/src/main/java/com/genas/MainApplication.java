@@ -6,6 +6,7 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.genas.components.SystemManagerPackage;
 import com.genas.components.list.Spot4BooksHorizontalListPackage;
 import com.genas.components.map.Spot4BooksGoogleMapPackage;
 import com.genas.components.simple.SimpleLabelViewPackage;
@@ -27,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
               new MainReactPackage(),
               new SimpleLabelViewPackage(),
               new Spot4BooksGoogleMapPackage(),
-              new Spot4BooksHorizontalListPackage()
+              new Spot4BooksHorizontalListPackage(),
+              new SystemManagerPackage()
       );
     }
   };

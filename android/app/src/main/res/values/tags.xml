@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<item name="itemLabelID" type="id"/>
+	<item name="itemImageID" type="id"/>
+	<item name="tagImageViewWidth" type="id"/>
+	<item name="tagImageURL" type="id"/>
+	<item name="tagBackground" type="id"/> 
+	<item name="tagScaleType" type="id"/> 
 </resources>

@@ -9,12 +9,13 @@
 #import "SimpleItemObject.h"
 
 @implementation SimpleItemObject
-- (instancetype)initWithProperties:(NSString*) labelText withWidth:(float) width andHeight:(float) height{
+- (instancetype)initWithProperties:(NSString*) labelText withUrl:(NSString*) url;{
   self = [super init];
   if (self) {
+    NSLog(@"-------LABEL-------%@", labelText);
     self.labelText = labelText;
-    self.width = width;
-    self.height = height;
+    NSLog(@"-------URL-------%@", url);
+    self.urlText = url;
   }
   return self;
 }

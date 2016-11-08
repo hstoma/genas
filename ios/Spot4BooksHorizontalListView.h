@@ -13,4 +13,7 @@
 
 @interface Spot4BooksHorizontalListView : RCTView <UICollectionViewDataSource, UICollectionViewDelegate>
 
+  @property (nonatomic, retain) BooksData *_itemsArray;
+- (void) initCollection;
+
 @end

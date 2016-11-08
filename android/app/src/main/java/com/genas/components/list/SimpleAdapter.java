@@ -1,11 +1,17 @@
 package com.genas.components.list;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.genas.R;
+import com.genas.components.manager.ContextHolder;
+import com.genas.components.manager.GlobalUtil;
+import com.genas.components.manager.ImageManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,9 @@ import java.util.List;
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder> {
 
     private List<SimpleItem> mDataset;
+
+    private static final int INITIAL_WIDTH = 200;
+    private static final int INITIAL_HEIGHT= 300;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -31,46 +40,17 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
             mLayout.setLayoutParams(params);
         }
 
-        public void setLabelText(String text) {
-            TextView textView = (TextView) mLayout.findViewById(R.id.itemLabelID);
-            System.out.println("------------------------" + textView);
-            textView.setText(text);
+        public void setImage(String url, SimpleAdapter adapter) {
+            ImageView imageCover = (ImageView) mLayout.findViewById(R.id.itemImageID);
+            imageCover.setTag(R.id.tagImageURL, url);
+            imageCover.setTag(R.id.tagImageViewWidth, GlobalUtil.convertDpiToPixels(ContextHolder.getInstance().getContext(),100));
+            ImageManager.getInstance().setImage(url,imageCover,adapter);
         }
     }
 
-    public class SimpleItem {
-        private String name;
-        private int width;
 
-        public SimpleItem(String name, int width) {
-            this.name = name;
-            this.width = width;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getWidth() {
-            return width;
-        }
-
-    }
-
-     public SimpleAdapter() {
-
-         mDataset = new ArrayList<>();
-         mDataset.add(new SimpleItem("Item 1", 375));
-         mDataset.add(new SimpleItem("Item 2", 135));
-         mDataset.add(new SimpleItem("Item 3", 395));
-         mDataset.add(new SimpleItem("Item 4", 160));
-         mDataset.add(new SimpleItem("Item 5", 300));
-         mDataset.add(new SimpleItem("Item 6", 275));
-         mDataset.add(new SimpleItem("Item 7", 405));
-         mDataset.add(new SimpleItem("Item 8", 380));
-         mDataset.add(new SimpleItem("Item 9", 360));
-
-
+     public SimpleAdapter(List<SimpleItem> dataset) {
+         mDataset = dataset;
     }
 
     @Override
@@ -80,14 +60,12 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
         LinearLayout rootView = new LinearLayout(parent.getContext());
         rootView.setBackgroundColor(0xffff00ff);
 
-        TextView labelText = new TextView(parent.getContext());
+        ImageView imageCover = new ImageView(parent.getContext());
 
-        labelText.setId(R.id.itemLabelID);
+        imageCover.setId(R.id.itemImageID);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        labelText.setLayoutParams(params);
-        rootView.addView(labelText);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(INITIAL_WIDTH,INITIAL_HEIGHT);
+        rootView.addView(imageCover, params);
 
         SimpleAdapter.ViewHolder holder = new SimpleAdapter.ViewHolder(rootView);
         return holder;
@@ -95,15 +73,33 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(SimpleAdapter.ViewHolder holder, int position) {
-        SimpleItem item = mDataset.get(position);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(item.getWidth(),LinearLayout.LayoutParams.MATCH_PARENT);
+        SimpleItem item = mDataset.get(position % mDataset.size());
+        //SimpleItem item = mDataset.get(position);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(INITIAL_WIDTH,INITIAL_HEIGHT);
         params.setMargins(15,5,15,5);
         holder.setLayutParams(params);
-        holder.setLabelText(item.getName());
+        holder.setImage(item.getUrl(), this);
     }
+
+    public final void setBitmap(final String url, final Bitmap bitmap, final ImageView view) {
+        if (view!=null) {
+            view.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (view.getTag(R.id.tagImageURL) != null && view.getTag(R.id.tagImageURL).toString().equals(url)) {
+                        ImageManager.hideLoading(view);
+                        view.setImageBitmap(bitmap);
+                    }
+                }
+            });
+        }
+
+    }
+
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return Integer.MAX_VALUE;
+
     }
 }

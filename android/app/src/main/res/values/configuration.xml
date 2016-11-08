@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Cache expiration time for images in milliseconds  -->
+	<item name="cacheImageExpirationTime" type="string">3600000</item>
+	<!-- Size of image cache in bytes --> 
+	<item name="cacheImageSize" type="string">8000000</item>
+</resources>

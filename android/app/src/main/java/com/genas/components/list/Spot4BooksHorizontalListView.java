@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
+import java.util.List;
+
 /**
  * Created by henadzistoma on 11/3/16.
  */
@@ -17,9 +19,16 @@ public class Spot4BooksHorizontalListView extends RecyclerView {
         this.setLayoutManager(layoutManager);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
         this.setLayoutParams(params);
-        SimpleAdapter adapter = new SimpleAdapter();
-        this.setAdapter(adapter);
+
         this.setBackgroundColor(0xffffffff);
+    }
+
+
+    public void setAdapter(List<SimpleItem> dataset) {
+        SimpleAdapter adapter = new SimpleAdapter(dataset);
+        this.setAdapter(adapter);
+        int startPosition = (Integer.MAX_VALUE/2) % dataset.size();
+        this.scrollToPosition(Integer.MAX_VALUE/2 - startPosition);
     }
 
 }

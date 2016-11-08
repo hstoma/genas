@@ -14,21 +14,41 @@ import {
 } from 'react-native';
 import SimpleLabelView from './simplelabelview';
 import Spot4BooksHorizontalList from './spot4bookhorizontallist';
+function Book (url, title) {
+    this.url = url;
+    this.title = title;
+}
 
+
+
+const books = new Array(new Book('https://spot4books.imgix.net/images/bookcovers/9789038893846.jpg', 'Huid en haar'), 
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789038899893.jpg','Het bestand'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021442785.jpg','Ge sta mel de werken'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021438627.jpg','De Nederlandse maagd'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021400747.jpg','De Amerikaanse prinses'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021438627.jpg','De Nederlandse maagd'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789044534610.jpg','Witte raaf'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021456164.jpg','Het verlangen van de egel'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789029539401.jpg','De man van vroeger'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021436081.jpg','Verzamel de liefde'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021457819.jpg','Een schitterend isolement'),
+                        new Book('https://spot4books.imgix.net/images/bookcovers/9789021442037.jpg','Mijn meneer'),
+                       );
 export default class genas extends Component {
-  
    render() {
+    console.log('-----------OK');
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome GenaS!
         </Text>
         <SimpleLabelView style={styles.simplelabel} labelText = "Hello GenaS Again from native"></SimpleLabelView>
-        <Spot4BooksHorizontalList style={styles.listStyle} />
+        <Spot4BooksHorizontalList style={styles.listStyle} bookList={books}/>
       </View>
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({

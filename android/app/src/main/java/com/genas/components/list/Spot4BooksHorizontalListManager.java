@@ -2,8 +2,15 @@ package com.genas.components.list;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
+import com.facebook.react.uimanager.annotations.ReactProp;
+import com.genas.components.manager.ContextHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,6 +29,7 @@ public class Spot4BooksHorizontalListManager extends ViewGroupManager<Spot4Books
 
     public Spot4BooksHorizontalListManager(ReactApplicationContext applicationReactNativeAppContext) {
         this.applicationReactNativeAppContext = applicationReactNativeAppContext;
+        ContextHolder.getInstance().setContext(applicationReactNativeAppContext);
     }
 
     @Override
@@ -35,6 +43,20 @@ public class Spot4BooksHorizontalListManager extends ViewGroupManager<Spot4Books
         listView = new Spot4BooksHorizontalListView(reactContext);
         return listView;
     }
+
+    @ReactProp(name = "bookList")
+    public void setPositionAndRadius (Spot4BooksHorizontalListView view, ReadableArray bookList) {
+        int size = bookList.size();
+        List<SimpleItem> items = new ArrayList<>();
+        for (int i=0;i<size;i++) {
+            ReadableMap map = bookList.getMap(i);
+            items.add(new SimpleItem(map.getString("title"),map.getString("url")));
+        }
+        if (items!=null) {
+            listView.setAdapter(items);
+        }
+    }
+
 
 
 
