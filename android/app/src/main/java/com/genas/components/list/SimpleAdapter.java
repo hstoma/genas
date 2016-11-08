@@ -3,6 +3,7 @@ package com.genas.components.list;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,9 +27,10 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
 
     private static final int INITIAL_WIDTH = 200;
     private static final int INITIAL_HEIGHT= 300;
+    Spot4BooksHorizontalViewItemListener listener;
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         // each data item is just a string in this case
         public LinearLayout mLayout;
         public ViewHolder(LinearLayout v) {
@@ -46,11 +48,13 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
             imageCover.setTag(R.id.tagImageViewWidth, GlobalUtil.convertDpiToPixels(ContextHolder.getInstance().getContext(),100));
             ImageManager.getInstance().setImage(url,imageCover,adapter);
         }
+
     }
 
 
-     public SimpleAdapter(List<SimpleItem> dataset) {
+     public SimpleAdapter(List<SimpleItem> dataset, Spot4BooksHorizontalViewItemListener listener) {
          mDataset = dataset;
+         this.listener = listener;
     }
 
     @Override
@@ -68,16 +72,26 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
         rootView.addView(imageCover, params);
 
         SimpleAdapter.ViewHolder holder = new SimpleAdapter.ViewHolder(rootView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String itemId = (String) v.getTag(R.id.tagItemId);
+                listener.onItemClick(itemId);
+            }
+        });
+
         return holder;
     }
 
     @Override
     public void onBindViewHolder(SimpleAdapter.ViewHolder holder, int position) {
         SimpleItem item = mDataset.get(position % mDataset.size());
-        //SimpleItem item = mDataset.get(position);
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(INITIAL_WIDTH,INITIAL_HEIGHT);
         params.setMargins(15,5,15,5);
         holder.setLayutParams(params);
+        holder.itemView.setTag(R.id.tagItemId, item.getTitle());
         holder.setImage(item.getUrl(), this);
     }
 

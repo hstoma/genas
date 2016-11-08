@@ -43,13 +43,20 @@ export default class genas extends Component {
           Welcome GenaS!
         </Text>
         <SimpleLabelView style={styles.simplelabel} labelText = "Hello GenaS Again from native"></SimpleLabelView>
-        <Spot4BooksHorizontalList style={styles.listStyle} bookList={books}/>
+        <Spot4BooksHorizontalList style={styles.listStyle} bookList={books} onItemTouched={(e) => this._itemSelected(e)}/>
       </View>
     );
   }
+
+_itemSelected(e) {
+    console.log('----OK------=====');
+    console.log('----' + e.nativeEvent.itemId);
+    alert(e.nativeEvent.itemId);
 }
 
+}
 
+ 
 
 const styles = StyleSheet.create({
   container: {
