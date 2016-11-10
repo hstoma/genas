@@ -25,8 +25,8 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
 
     private List<SimpleItem> mDataset;
 
-    private static final int INITIAL_WIDTH = 200;
-    private static final int INITIAL_HEIGHT= 300;
+    public static final int INITIAL_WIDTH = 200;
+    public static final int INITIAL_HEIGHT= 300;
     Spot4BooksHorizontalViewItemListener listener;
 
 
@@ -69,6 +69,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
         imageCover.setId(R.id.itemImageID);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(INITIAL_WIDTH,INITIAL_HEIGHT);
+        params.setMargins(5,5,5,5);
         rootView.addView(imageCover, params);
 
         SimpleAdapter.ViewHolder holder = new SimpleAdapter.ViewHolder(rootView);
@@ -89,7 +90,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
         SimpleItem item = mDataset.get(position % mDataset.size());
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(INITIAL_WIDTH,INITIAL_HEIGHT);
-        params.setMargins(15,5,15,5);
+        params.setMargins(0,0,0,0);
         holder.setLayutParams(params);
         holder.itemView.setTag(R.id.tagItemId, item.getTitle());
         holder.setImage(item.getUrl(), this);
@@ -113,7 +114,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return Integer.MAX_VALUE;
+        return Spot4BooksHorizontalListView.ELEMENT_COUNT;
 
     }
 }

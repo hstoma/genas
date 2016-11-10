@@ -58,9 +58,6 @@ public class CacheMap<T extends BaseCacheModel> {
 		if (keys.contains(key)) {
 			remove(key, map.get(key));
 		}
-		System.out.println("1----------------" + realSize);
-		System.out.println("2----------------" + reservedSize);
-		System.out.println("------------------------------");
 		for (int i = 0; i < keys.size(); i++) {
 			if (realSize > reservedSize) {
 				String val = keys.get(i);

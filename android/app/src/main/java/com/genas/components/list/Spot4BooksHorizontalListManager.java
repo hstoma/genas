@@ -14,7 +14,6 @@ import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.genas.components.manager.ContextHolder;
-import com.genas.components.map.Spot4BookMapViewManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +102,6 @@ public class Spot4BooksHorizontalListManager extends ViewGroupManager<Spot4Books
 
     @Override
     public void onItemClick(String itemId) {
-        System.out.println("---------------------" + itemId);
         WritableMap map = new WritableNativeMap();
         if (itemId!=null) {
             map.putString("itemId",itemId);
