@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Dimensions
 } from 'react-native';
 import SimpleLabelView from './simplelabelview';
@@ -38,9 +39,17 @@ export default class genas extends Component {
    render() {
     console.log('-----------OK');
     return (
-      <View style={styles.container}>
-        <Spot4BooksHorizontalList style={styles.listStyle} bookList={books} onItemTouched={(e) => this._itemSelected(e)}/>
-      </View>
+      <ScrollView
+          scrollEventThrottle={ 16 }
+          showsVerticalScrollIndicator={ false }>
+      
+        <Spot4BooksHorizontalList key='1' style={styles.listStyle} bookList={books} onItemTouched={(e) => this._itemSelected(e)}/>
+        
+        <Spot4BooksHorizontalList key='2' style={styles.listStyle} bookList={books} onItemTouched={(e) => this._itemSelected(e)}/>
+        
+        <Spot4BooksHorizontalList key='3' style={styles.listStyle} bookList={books} onItemTouched={(e) => this._itemSelected(e)}/>
+      
+        </ScrollView>
     );
   }
 
@@ -73,9 +82,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   listStyle: {
-    height: 250,
+    height: 240,
     width: Dimensions.get('window').width,
-    backgroundColor: '#FF0000',
+    backgroundColor: '#F5FCFF',
     marginTop: 25
   },
   mapStyle: {

@@ -15,7 +15,6 @@
   NSDictionary* dict;
   for (int i=0; i<[json count]; i++) {
     dict = [self NSDictionary:[json objectAtIndex:i]];
-    NSLog(@"-------!!!!!!!-------%@", dict);
     [_itemsArray addObject:[[SimpleItemObject alloc] initWithProperties:[dict objectForKey:@"title"] withUrl:[dict objectForKey:@"url"]]];
   }
   

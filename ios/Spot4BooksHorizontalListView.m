@@ -14,12 +14,13 @@
 @implementation Spot4BooksHorizontalListView {
   UICollectionView *_collectionView;
   float currentOffset;
+  float offcetY;
   long currentPosition;
 }
 
 const long CELLS_COUNT = 3000;
-const long CELL_WIDTH = 120;
-const long CELL_HEIGHT = 170;
+const long CELL_WIDTH = 150;
+const long CELL_HEIGHT = 220;
 const long CELL_MARGIN = 15;
 
 - (instancetype)init
@@ -48,6 +49,7 @@ const long CELL_MARGIN = 15;
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     flowLayout.minimumLineSpacing = CELL_MARGIN;
     flowLayout.minimumInteritemSpacing = 0.0;
+    
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, self.frame.size.height) collectionViewLayout:flowLayout];
     [_collectionView registerClass:[Spot4BooksCell class] forCellWithReuseIdentifier:@"Spot4BooksCell"];
     [_collectionView setBackgroundColor:[UIColor clearColor]];
@@ -63,35 +65,35 @@ const long CELL_MARGIN = 15;
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-  
+  int itemFactor = 1;
+  float velocityFactor = fabs(velocity.x);
+  if (velocityFactor<1) {
+    itemFactor = 1;
+  } else if (velocityFactor<2.0){
+    itemFactor = 2;
+  } else if (velocityFactor<3.0){
+    itemFactor = 3;
+  } else if (velocityFactor<4.0){
+    itemFactor = 4;
+  } else if (velocityFactor<5.0){
+    itemFactor = 5;
+  } else {
+    itemFactor = 6;
+  }
+                           
   float startOffset = scrollView.contentOffset.x;
-    float newTargetOffset = 0;
+  float newTargetOffset = 0;
   if (currentOffset>startOffset) {
-    newTargetOffset = currentOffset - CELL_WIDTH - CELL_MARGIN;
+    newTargetOffset = currentOffset - CELL_WIDTH*itemFactor - CELL_MARGIN*itemFactor;
     currentOffset = newTargetOffset;
   } else {
-    newTargetOffset = currentOffset + CELL_WIDTH + CELL_MARGIN;
+    newTargetOffset = currentOffset + CELL_WIDTH*itemFactor + CELL_MARGIN*itemFactor;
     currentOffset = newTargetOffset;
   }
 
   
   targetContentOffset->x = currentOffset;
   [scrollView setContentOffset:CGPointMake(newTargetOffset, scrollView.contentOffset.y) animated:YES];
-  /*float targetOffset = targetContentOffset->x;
-  float newTargetOffset = 0;
-  
-  if (targetOffset > currentOffset)
-    newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth;
-  else
-    newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth;
-  
-  if (newTargetOffset < 0)
-    newTargetOffset = 0;
-  else if (newTargetOffset > scrollView.contentSize.width)
-    newTargetOffset = scrollView.contentSize.width;
-  
-  targetContentOffset->x = currentOffset;
-  [scrollView setContentOffset:CGPointMake(newTargetOffset, scrollView.contentOffset.y) animated:YES];*/
   
 }
 
@@ -105,24 +107,20 @@ const long CELL_MARGIN = 15;
   [super layoutSubviews];
   long startPosition = CELLS_COUNT/2 - CELLS_COUNT/2 % [self._itemsArray count];
   currentPosition = startPosition;
-  NSLog(@"----------------%ld", currentPosition);
-  
-  
   currentOffset = (startPosition) * CELL_WIDTH + startPosition * CELL_MARGIN + CELL_WIDTH/2 - self.frame.size.width/2;
-  NSLog(@"----------------%f",currentOffset);
-  NSLog(@"----------------%f",self.frame.size.width);
-  
   [_collectionView setContentOffset:CGPointMake(currentOffset, _collectionView.contentOffset.y) animated:NO];
-  //NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:startPosition inSection:0];
-  //[_collectionView scrollToItemAtIndexPath:newIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 
 - (void)reactSetFrame:(CGRect)frame
 {
   [super reactSetFrame: frame];
+  offcetY = (self.frame.size.height - CELL_HEIGHT)/2;
+  if (offcetY<0) {
+    offcetY = 0;
+  }
   if (_collectionView!=nil) {
-    [_collectionView setFrame:frame];
+     [_collectionView setFrame:CGRectMake(0,0, self.frame.size.width, self.frame.size.height)];
   }
 }
 
@@ -138,8 +136,8 @@ const long CELL_MARGIN = 15;
   [actionsDelegate onTapItem:obj.labelText];
 }
 
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-  //SimpleItemObject* obj = [self._itemsArray objectAtIndex:indexPath.item];
   return CGSizeMake(CELL_WIDTH, self.frame.size.height);
 }
 
@@ -164,7 +162,7 @@ const long CELL_MARGIN = 15;
   });
   
   
-  [cell setRealBounds:CGSizeMake(CELL_WIDTH, CELL_HEIGHT)];
+  [cell setRealBounds:CGSizeMake(CELL_WIDTH, CELL_HEIGHT) withY:offcetY];
   return cell;
 }
 

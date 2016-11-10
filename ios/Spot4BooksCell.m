@@ -34,8 +34,7 @@
   
 }
 
--(void) setRealBounds:(CGSize) size {
-  CGFloat y = (self.frame.size.height -size.height)/2 - 20;
+-(void) setRealBounds:(CGSize) size withY:(float) y {
   [rootView setFrame:CGRectMake(0, y, size.width, size.height)];
   [coverImage setFrame:CGRectMake(0, 0, size.width, size.height)];
 }

@@ -10,5 +10,5 @@
 #import <UIKit/UIKit.h>
 
 @interface Spot4BooksCell : UICollectionViewCell
--(void) setRealBounds:(CGSize) size;
+-(void) setRealBounds:(CGSize) size withY:(float) y;
 @end

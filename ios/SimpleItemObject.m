@@ -12,9 +12,7 @@
 - (instancetype)initWithProperties:(NSString*) labelText withUrl:(NSString*) url;{
   self = [super init];
   if (self) {
-    NSLog(@"-------LABEL-------%@", labelText);
     self.labelText = labelText;
-    NSLog(@"-------URL-------%@", url);
     self.urlText = url;
   }
   return self;
